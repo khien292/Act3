@@ -4,6 +4,12 @@ import { Ionicons } from '@expo/vector-icons';
 import BurgerMenu from '../components/BurgerMenu';
 
 const AnotherComponent = () => {
+  // Define your list of featured items
+  const featuredItems = [
+    { id: 1, title: 'Featured Item 1' },
+    // Add more items as needed
+  ];
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
@@ -11,24 +17,26 @@ const AnotherComponent = () => {
         <Text style={styles.greetings}>Welcome to HamloyApp</Text>
 
         <View style={styles.contentContainer}>
-        <View style={styles.searchContainer}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search"
-            placeholderTextColor="#8B8B8B"
-          />
-          <TouchableOpacity style={styles.sortIconContainer}>
-            <Ionicons name="ios-options" style={styles.sortIcon} />
-          </TouchableOpacity>
+          <View style={styles.searchContainer}>
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search"
+              placeholderTextColor="#8B8B8B"
+            />
+            <TouchableOpacity style={styles.sortIconContainer}>
+              <Ionicons name="ios-options" style={styles.sortIcon} />
+            </TouchableOpacity>
+          </View>
         </View>
 
-      </View>
-
-
         <View style={styles.content}>
-          {/* Your additional content goes here */}
           <Text style={styles.sectionTitle}>Featured Events</Text>
-          {/* Add your list of featured items or any other content */}
+          {/* Render the list of featured items */}
+          {featuredItems.map(item => (
+            <View key={item.id} style={styles.featuredItem}>
+              <Text style={styles.featuredItemTitle}>{item.title}</Text>
+            </View>
+          ))}
         </View>
 
         <TouchableOpacity style={styles.button}>
@@ -41,7 +49,7 @@ const AnotherComponent = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: 'white',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
@@ -97,19 +105,40 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 20,
-    marginTop: 50,
+    marginTop: 30,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
     marginBottom: 10,
+  },
+  featuredItem: {
+    backgroundColor: 'black',
+    width: '100%',
+    aspectRatio: 1,
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  featuredItemTitle: {
+    fontSize: 16,
+    color: 'black',
   },
   button: {
     backgroundColor: 'black',
     padding: 15,
     borderRadius: 10,
-    margin: 20,
+    marginHorizontal: 20,
+    marginTop: 20,
     alignItems: 'center',
   },
   buttonText: {
